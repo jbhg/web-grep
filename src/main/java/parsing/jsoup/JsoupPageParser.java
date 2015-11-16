@@ -1,13 +1,14 @@
 package parsing.jsoup;
 
+import app.Debug;
+import app.Matching;
 import dataaccess.EmailManager;
-import app.*;
 import org.apache.commons.validator.routines.UrlValidator;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import parsing.*;
+import parsing.IPageParser;
 
 import java.io.IOException;
 import java.util.Set;

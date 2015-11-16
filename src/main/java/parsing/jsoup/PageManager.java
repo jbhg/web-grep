@@ -1,7 +1,6 @@
 package parsing.jsoup;
 
 import app.Debug;
-import app.SiteLevel;
 
 import java.util.HashMap;
 import java.util.LinkedList;

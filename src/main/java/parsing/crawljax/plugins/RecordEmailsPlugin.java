@@ -1,12 +1,12 @@
 package parsing.crawljax.plugins;
 
-import app.*;
-import com.crawljax.core.*;
-import com.crawljax.core.plugin.*;
-import com.crawljax.core.state.*;
-import dataaccess.*;
+import app.Matching;
+import com.crawljax.core.CrawlerContext;
+import com.crawljax.core.plugin.OnNewStatePlugin;
+import com.crawljax.core.state.StateVertex;
+import dataaccess.EmailManager;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * A plugin to the crawljax implementation to filter for email addresses.

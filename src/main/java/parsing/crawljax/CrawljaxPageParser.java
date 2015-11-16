@@ -1,13 +1,15 @@
 package parsing.crawljax;
 
-import com.crawljax.browser.*;
-import com.crawljax.core.*;
-import com.crawljax.core.configuration.*;
-import dataaccess.*;
-import parsing.*;
-import parsing.crawljax.plugins.*;
 
-import java.util.*;
+import com.crawljax.browser.EmbeddedBrowser;
+import com.crawljax.core.CrawljaxRunner;
+import com.crawljax.core.configuration.BrowserConfiguration;
+import com.crawljax.core.configuration.CrawljaxConfiguration;
+import dataaccess.EmailManager;
+import parsing.IPageParser;
+import parsing.crawljax.plugins.RecordEmailsPlugin;
+
+import java.util.Set;
 
 /**
  * Created by jbg on 11/16/15.
@@ -29,7 +31,7 @@ public class CrawljaxPageParser implements IPageParser
                 CrawljaxConfiguration.builderFor(startingUrl)
                 .setBrowserConfig(new BrowserConfiguration(EmbeddedBrowser.BrowserType.CHROME, 2))
                 .setMaximumDepth(_maxDepth)
-                .addPlugin(new RecordEmailsPlugin (_emailManager));
+                .addPlugin(new RecordEmailsPlugin(_emailManager));
         builder.crawlRules().click("a");
         CrawljaxRunner crawljax = new CrawljaxRunner (builder.build());
         crawljax.call();

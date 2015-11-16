@@ -1,0 +1,48 @@
+I. Introduction
+
+  This recursive web scraping project has been implemented with Java (1.7+)
+  and Gradle as a tool to compile and run. It depends on the ChromeDriver
+  project, as one of the embedded libraries uses Selenium to load AJAX sites.
+
+  Note that two implementations of IPageParser exist; the Jsoup implementation
+  only works with synchronous applications.
+
+II. Running the application
+
+  One may run this application with.
+
+  ./start http//fully-qualified-web-url.com
+
+  'start' is a bash script that passes its parameters to the gradle script,
+  which in turns passes them to the main method of the Java project.
+
+
+
+III. Success Test Cases
+
+  The following SUCCESS conditions are verified to work correctly:
+
+    1. http://sites.tufts.edu/tuftsfocus/
+    2. http://jana.com
+    3. http://tuftsobserver.org
+    4. http://startupinstitute.com
+
+IV. Requirements
+
+  For execution:
+
+    * Java (1.8) and Gradle (2.3 specified in project, though any should work)
+    * ChromeDriver: https://sites.google.com/a/chromium.org/chromedriver/
+        (available on Homebrew on Mac)
+
+  Libraries:
+
+    * crawljax-core (https://github.com/crawljax/crawljax/wiki/Getting-started)
+      A library that wraps Selenium WebDriver to abstract away some of the
+      orchestration required to scrape asynchronous applications.
+    * commons-validator (https://commons.apache.org/proper/commons-validator)
+      A library containing validation rules -- in this case, used to ensure
+      that URLs are valid.
+    * jsoup (http://jsoup.org/)
+      A Java HTML processor used in the original implementation to find valid
+      clickable content on the page.

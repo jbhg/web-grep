@@ -9,7 +9,11 @@ I. Introduction
 
 II. Running the application
 
-  One may run this application with.
+  The application is built with:
+
+  gradle build
+
+  One may run this application with:
 
   ./start http//fully-qualified-web-url.com
 

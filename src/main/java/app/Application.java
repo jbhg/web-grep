@@ -1,6 +1,7 @@
 package app;
 
 import parsing.*;
+import parsing.crawljax.*;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package dataaccess;
+package parsing.jsoup;
 
 import app.Debug;
 import app.SiteLevel;
@@ -11,7 +11,7 @@ import java.util.Queue;
 /**
  * Created by jbg on 11/16/15.
  */
-public class PageManager
+class PageManager
 {
     private final Queue<String> _pageQueue;
     private final Map<String, Integer> _siteLevels;

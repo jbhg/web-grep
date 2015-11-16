@@ -18,6 +18,11 @@ public class Application {
             startUrl = args[0];
         }
 
+        if (!startUrl.startsWith("http://"))
+        {
+            startUrl = "http://" + startUrl;
+        }
+
         IPageParser pageParser = new CrawljaxPageParser (Settings.getDepth());
         Set<String> results = pageParser.printAllEmails(startUrl);
         if (results != null)

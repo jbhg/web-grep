@@ -50,8 +50,8 @@ public class PageManager
     }
 
     /**
-     * @pre PageManager#hasNext == true
-     * @return the next page to process
+     * @pre {@link PageManager#hasNext()} == true
+     * @return the next page to be processed
      */
     public SiteLevel pop()
     {

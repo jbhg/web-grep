@@ -8,12 +8,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by jbg on 11/16/15.
+ * Static methods to handle regular expression pattern matching.
  */
-public class Matching
+public class RegexPatternMatcher
 {
-    public static String EMAIL_STRING = "[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+";
-    public static Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_STRING);
+    private static String EMAIL_STRING = "[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+";
+    private static Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_STRING);
 
     public static List<String> findAllEmails(final Document document)
     {
@@ -21,15 +21,18 @@ public class Matching
         {
             return findAllEmails(document.body().toString());
         }
-        return new ArrayList<>();
+        return new ArrayList<>(); // empty list
     }
 
     public static List<String> findAllEmails (final String content) {
         List<String> result = new ArrayList<>();
-        Matcher m = EMAIL_PATTERN.matcher(content);
-        while (m.find())
+        if (content != null)
         {
-            result.add(m.group());
+            Matcher m = EMAIL_PATTERN.matcher(content);
+            while (m.find())
+            {
+                result.add(m.group());
+            }
         }
         return result;
     }

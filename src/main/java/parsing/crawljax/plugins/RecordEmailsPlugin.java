@@ -1,6 +1,6 @@
 package parsing.crawljax.plugins;
 
-import app.Matching;
+import app.RegexPatternMatcher;
 import com.crawljax.core.CrawlerContext;
 import com.crawljax.core.plugin.OnNewStatePlugin;
 import com.crawljax.core.state.StateVertex;
@@ -23,7 +23,7 @@ public class RecordEmailsPlugin implements OnNewStatePlugin
     @Override
     public void onNewState (CrawlerContext context, StateVertex newState)
     {
-        List<String> emails = Matching.findAllEmails(context.getBrowser().getUnStrippedDom());
+        List<String> emails = RegexPatternMatcher.findAllEmails(context.getBrowser().getUnStrippedDom());
         if (emails != null)
         {
             _emailManager.putAll(newState.getUrl(), emails);

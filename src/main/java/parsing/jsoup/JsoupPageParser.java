@@ -1,7 +1,7 @@
 package parsing.jsoup;
 
 import app.Debug;
-import app.Matching;
+import app.RegexPatternMatcher;
 import dataaccess.EmailManager;
 import org.apache.commons.validator.routines.UrlValidator;
 import org.jsoup.Jsoup;
@@ -61,7 +61,7 @@ public class JsoupPageParser implements IPageParser
     private void _parsePage(final String site, final int level) throws IOException {
         Debug.println("Processing " + level + ":" + site);
         final Document doc = Jsoup.connect(site).get();
-        _emailManager.putAll(site, Matching.findAllEmails(doc));
+        _emailManager.putAll(site, RegexPatternMatcher.findAllEmails(doc));
         if (level < _maxDepth)
         {
             _enqueueLinksForProcessing(doc, level);

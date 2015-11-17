@@ -55,3 +55,8 @@ IV. Requirements
     * jsoup (http://jsoup.org/)
       A Java HTML processor used in the original implementation to find valid
       clickable content on the page.
+
+V. Limitations
+
+  * "Note: External links to other websites are automatically ignored by
+    Crawljax" (see: https://github.com/crawljax/crawljax/wiki/Getting-started)

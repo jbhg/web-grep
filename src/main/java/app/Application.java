@@ -1,21 +1,32 @@
 package app;
 
-import parsing.*;
-import parsing.crawljax.*;
+import parsing.IPageParser;
+import parsing.crawljax.CrawljaxPageParser;
 
-import java.util.*;
+import java.util.Set;
 
-public class Application {
+public class Application
+{
+    public static void main(String[] args)
+    {
+        String startUrl = DefaultSettings.getDefaultUrl();
+        int maxDepth = DefaultSettings.getDepth();
 
-    public static void main(String[] args) {
-        String startUrl;
-        if (args.length == 0)
-        {
-            startUrl = "http://jana.com";
-        }
-        else
+        if (args.length >= 1)
         {
             startUrl = args[0];
+        }
+
+        if (args.length >= 2)
+        {
+            try
+            {
+                maxDepth = Integer.parseInt(args[1]);
+            }
+            catch (NumberFormatException e)
+            {
+                // do nothing, use default value.
+            }
         }
 
         if (!startUrl.startsWith("http://"))
@@ -23,22 +34,30 @@ public class Application {
             startUrl = "http://" + startUrl;
         }
 
-        IPageParser pageParser = new CrawljaxPageParser (Settings.getDepth());
+        IPageParser pageParser = new CrawljaxPageParser(maxDepth);
         Set<String> results = pageParser.printAllEmails(startUrl);
         if (results != null)
         {
-            for (String result : results)
+            for (final String result : results)
             {
-                System.out.println (result);
+                System.out.println(result);
             }
         }
     }
 
     /**
-     * Created by jbg on 11/16/15.
+     * Default application settings.
      */
-    private static class Settings
+    private static class DefaultSettings
     {
-        public static int getDepth() { return 2; }
+        public static int getDepth()
+        {
+            return 2;
+        }
+
+        public static String getDefaultUrl()
+        {
+            return "http://startupinstitute.com";
+        }
     }
 }

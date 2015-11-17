@@ -15,11 +15,16 @@ II. Running the application
 
   One may run this application with:
 
-  ./start http//fully-qualified-web-url.com
+  ./start http//fully-qualified-web-url.com depth-as-integer
 
   'start' is a bash script that passes its parameters to the gradle script,
   which in turns passes them to the main method of the Java project.
 
+  The first parameter to 'start' is the URL to be scraped; if one is not
+  specified, http://startupinstitute.com is used.
+
+  The second parameter to 'start' is the depth to be searched; if one is not
+  specified, 2 is used.
 
 
 III. Success Test Cases

@@ -8,6 +8,7 @@ import com.crawljax.core.configuration.CrawljaxConfiguration;
 import dataaccess.EmailManager;
 import dataaccess.PageManager;
 import parsing.IPageParser;
+import parsing.crawljax.plugins.PreCrawlingFilterForDuplicates;
 import parsing.crawljax.plugins.RecordEmailsPlugin;
 
 import java.util.Set;
@@ -33,10 +34,13 @@ public class CrawljaxPageParser implements IPageParser
                 CrawljaxConfiguration.builderFor(startingUrl)
                 .setBrowserConfig(new BrowserConfiguration(EmbeddedBrowser.BrowserType.CHROME, 2))
                 .setMaximumDepth(_maxDepth)
-                .addPlugin(new RecordEmailsPlugin(_emailManager, _pageManager));
+                .addPlugin(new PreCrawlingFilterForDuplicates())
+                .addPlugin(new RecordEmailsPlugin(_emailManager, _pageManager))
+                ;
         builder.crawlRules().click("a");
-        CrawljaxRunner crawljax = new CrawljaxRunner (builder.build());
+        CrawljaxRunner crawljax = new CrawljaxRunner(builder.build());
         crawljax.call();
         return _emailManager.getAll();
     }
+
 }

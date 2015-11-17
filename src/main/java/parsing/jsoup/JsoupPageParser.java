@@ -3,6 +3,8 @@ package parsing.jsoup;
 import app.Debug;
 import app.RegexPatternMatcher;
 import dataaccess.EmailManager;
+import dataaccess.PageManager;
+import dataaccess.SiteLevel;
 import org.apache.commons.validator.routines.UrlValidator;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

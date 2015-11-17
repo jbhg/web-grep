@@ -1,9 +1,9 @@
-package parsing.jsoup;
+package dataaccess;
 
 /**
  * An object representing an absolute URL and its depth within the search.
  */
-class SiteLevel {
+public class SiteLevel {
 
     private final String _page;
     private final int _level;

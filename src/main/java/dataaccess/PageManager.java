@@ -1,4 +1,4 @@
-package parsing.jsoup;
+package dataaccess;
 
 import app.Debug;
 
@@ -8,9 +8,10 @@ import java.util.Map;
 import java.util.Queue;
 
 /**
- * Created by jbg on 11/16/15.
+ * Maintains a list of which URLs have been visited and a queue for those
+ * which must still be visited.
  */
-class PageManager
+public class PageManager
 {
     private final Queue<String> _pageQueue;
     private final Map<String, Integer> _siteLevels;
@@ -21,12 +22,22 @@ class PageManager
         _siteLevels = new HashMap<>();
     }
 
-    public boolean putSite(String site, int level)
+    /**
+     * Returns true if the site was not already cached; false otherwise.
+     * @param site site url
+     * @param level depth in scraping tree
+     * @return true if the site was not already cached; false otherwise
+     */
+    public boolean putSite(final String site, final int level)
     {
         if (_siteLevels.containsKey(site))
         {
             Debug.println("Site already enqueued; ignoring: " + site);
             return false;
+        }
+        else
+        {
+            Debug.println("Enqueuing site " + site + " at level " + level);
         }
         _pageQueue.add(site);
         _siteLevels.put(site, level);
@@ -38,6 +49,10 @@ class PageManager
         return !_pageQueue.isEmpty();
     }
 
+    /**
+     * @pre PageManager#hasNext == true
+     * @return the next page to process
+     */
     public SiteLevel pop()
     {
         final String page = _pageQueue.remove();

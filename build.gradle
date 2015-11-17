@@ -1,0 +1,45 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+jar {
+    baseName = 'web-grep'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName = 'app.Application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    [
+        "com.crawljax:crawljax-core:3.6"
+    ].each { dep ->
+        compile(dep) {
+            exclude module: "logback-classic"
+        }
+    } // Disable logging: http://stackoverflow.com/a/28526317
+
+    compile "org.jsoup:jsoup:1.8.3"
+    compile "commons-validator:commons-validator:1.4.1"
+}
+
+// See: http://simonharrer.wordpress.com/2013/09/17/building-command-line-apps-with-gradle/
+run {
+    if(project.hasProperty('args')){
+        args project.args.split('\\s+')
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}

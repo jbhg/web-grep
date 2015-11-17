@@ -36,6 +36,7 @@ public class EmailManager
         return _emailSites.keySet();
     }
 
+    // TODO: deprecate this and figure out how to grab the site name.
     public void putAll (List<String> emails)
     {
         putAll("", emails);

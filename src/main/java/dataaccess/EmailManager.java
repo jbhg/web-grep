@@ -37,6 +37,9 @@ public class EmailManager
         }
     }
 
+    /**
+     * @return unique email addresses found while scraping this particular site
+     */
     public Set<String> getAll()
     {
         Debug.println(_emailSites.toString());

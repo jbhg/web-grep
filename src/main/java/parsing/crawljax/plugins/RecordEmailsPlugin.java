@@ -26,7 +26,7 @@ public class RecordEmailsPlugin implements OnNewStatePlugin
         List<String> emails = Matching.findAllEmails(context.getBrowser().getUnStrippedDom());
         if (emails != null)
         {
-            _emailManager.putAll (emails);
+            _emailManager.putAll(newState.getUrl(), emails);
         }
     }
 }

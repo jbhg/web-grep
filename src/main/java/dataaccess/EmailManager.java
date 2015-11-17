@@ -2,43 +2,44 @@ package dataaccess;
 
 import app.Debug;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
- * Created by jbg on 11/16/15.
+ * Storage for emails found; associates an email address with the first site
+ * on which it was found.
  */
 public class EmailManager
 {
-    private Set<String> _processedSites;
-    private Map<String, String> _emailSites;
+    private final Map<String, String> _emailSites;
 
     public EmailManager()
     {
-        _processedSites = new HashSet<>();
         _emailSites = new HashMap<>();
     }
 
-    public void putAll(String site, List<String> allEmails)
+    /**
+     * Writes all emails found on a particular site.
+     * @param siteUrl web URL on which emails were found
+     * @param allEmails email addresses (collection).
+     */
+    public void putAll(final String siteUrl, final List<String> allEmails)
     {
-        _processedSites.add(site);
-        Debug.println("Found emails " + allEmails + " on site " + site);
-        for (String email : allEmails)
+        Debug.println("Found emails " + allEmails + " on site " + siteUrl);
+        for (final String email : allEmails)
         {
-            if (!_emailSites.containsKey(email))
+            if (!_emailSites.containsKey(email)) // if not already listed
             {
-                _emailSites.put(email, site);
+                _emailSites.put(email, siteUrl);
             }
         }
     }
 
     public Set<String> getAll()
     {
+        Debug.println(_emailSites.toString());
         return _emailSites.keySet();
-    }
-
-    // TODO: deprecate this and figure out how to grab the site name.
-    public void putAll (List<String> emails)
-    {
-        putAll("", emails);
     }
 }

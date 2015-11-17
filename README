@@ -60,3 +60,8 @@ V. Limitations
 
   * "Note: External links to other websites are automatically ignored by
     Crawljax" (see: https://github.com/crawljax/crawljax/wiki/Getting-started)
+
+  * It appears that Crawljax does not support caching pages it has already seen
+    nor registering some way to delete pages from the dom that have already
+    been seen; see
+    https://groups.google.com/forum/#!searchin/crawljax/duplicate/crawljax/CQsfziOwZ-c/qcPsNkbmaI8J
